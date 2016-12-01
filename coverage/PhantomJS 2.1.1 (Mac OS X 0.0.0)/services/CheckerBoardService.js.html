@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for services/CheckerBoardService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">services/</a> CheckerBoardService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60.29% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>126/209</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">37.36% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>65/174</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">77.78% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>14/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60.29% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>126/209</span>
+      </div>
+      <div class='fl pad1y'>
+        <span class="strong">4 statements, 4 branches</span>
+        <span class="quiet">Ignored</span>  &nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">96×</span>
+<span class="cline-any cline-yes">768×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">64×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('checkers').service('CheckerBoardService', function(){ 
+&nbsp;
+	var board = new Array(8);
+	//create a map of available jumps, map will contain an array of available jump locations
+	var availableJumps = {};
+	
+	//used to let other components that a jump has taken place
+	var jumpOccurred = false;
+&nbsp;
+	var game;
+&nbsp;
+	for(var i = 0; i &lt; board.length; i++){
+		board[i] = new Array(8);
+		for(var j = 0; j &lt; board[i].length; j++){
+			board[i][j] = "";
+		}
+	}
+&nbsp;
+	function populateBoard(positions){
+		Object.keys(positions).forEach(function(key, value){
+			var coord = key.split("");
+			var x = coord[0].charCodeAt(0) - 97;
+			var y = parseInt(coord[1]) - 1;
+		
+			board[x][y] = positions[key];		
+		});
+	};
+&nbsp;
+	function setVirtualBoard(data) {
+		board = data;
+	}
+&nbsp;
+	function getVirtualBoard(){
+		return board;
+	}
+&nbsp;
+	function validMove(piece, oldPos, newPos){
+		var bool = false;
+&nbsp;
+		var oldCoord = oldPos.split("");
+		var newCoord = newPos.split("");
+		
+		var oldX = oldCoord[0].charCodeAt(0) - 97;
+		var oldY = parseInt(oldCoord[1]) - 1;
+&nbsp;
+		var newX = newCoord[0].charCodeAt(0) - 97;
+		var newY = parseInt(newCoord[1]) - 1;
+&nbsp;
+		if(piece == 'wP'){
+			if(positiveJump(piece, oldX, oldY, newX, newY)){
+				bool = true;	
+			}
+			else <span class="missing-if-branch" title="else path not taken" >E</span>if(positiveMove(oldX, oldY, newX, newY)){
+				bool = true;
+			}			
+		} else if (piece == 'bP'){
+			<span class="missing-if-branch" title="else path not taken" >E</span>if(negativeMove(oldX, oldY, newX, newY)){
+				bool = true;
+			} else <span class="cstat-no" title="statement not covered" >if(negativeJump(piece, oldX, oldY, newX, newY)){</span>
+<span class="cstat-no" title="statement not covered" >				bool = true;</span>
+			}
+		} else <span class="missing-if-branch" title="else path not taken" >E</span>if(piece == 'wK' || piece == 'bK'){
+			<span class="missing-if-branch" title="if path not taken" >I</span>if(positiveJump(piece, oldX, oldY, newX, newY)){
+<span class="cstat-no" title="statement not covered" >				bool = true;	</span>
+			} else if(positiveMove(oldX, oldY, newX, newY)){
+				bool = true;
+			} else <span class="missing-if-branch" title="else path not taken" >E</span>if(negativeMove(oldX, oldY, newX, newY)){
+				bool = true;
+			} else <span class="cstat-no" title="statement not covered" >if(negativeJump(piece, oldX, oldY, newX, newY)){</span>
+<span class="cstat-no" title="statement not covered" >				bool = true;</span>
+			}			
+		}
+		//update the board with the new location of the pieces
+		<span class="missing-if-branch" title="else path not taken" >E</span>if(bool){
+			board[oldX][oldY] = "";
+			board[newX][newY] = piece;
+			kingMe(piece, newX, newY);
+		}
+		
+		//update the board with the new coordinates
+		return bool;
+	}
+&nbsp;
+/* Kings can move forward and backward
+*/
+	//forward move for whitepiece
+	function positiveMove(oldX, oldY, newX, newY){
+		var bool = true;
+		if((newY - oldY) != 1 || ((newX - oldX) != 1 &amp;&amp; (newX - oldX) != -1)){
+			bool = false;
+		}
+&nbsp;
+		else <span class="missing-if-branch" title="if path not taken" >I</span>if(board[newX][newY] != ""){
+<span class="cstat-no" title="statement not covered" >			bool = false;</span>
+		}
+		return bool;
+	}
+&nbsp;
+	//forward move for blackpiece
+	function negativeMove(oldX, oldY, newX, newY){
+		var bool = true;
+		<span class="missing-if-branch" title="if path not taken" >I</span>if((newY - oldY) != -1 || ((newX - oldX) != 1 &amp;&amp; (newX - oldX) != -1)){
+<span class="cstat-no" title="statement not covered" >				bool = false;</span>
+		}
+&nbsp;
+		else <span class="missing-if-branch" title="if path not taken" >I</span>if(board[newX][newY] != ""){
+<span class="cstat-no" title="statement not covered" >			bool = false;</span>
+		}
+		return bool;
+	}
+&nbsp;
+	function positiveJump(piece, oldX, oldY, newX, newY){
+		var bool = true;
+		var pieceType = piece.split("");
+		/*Check that the user moved the piece 2 rows up and 2 columns away 
+		  from the orginal position
+		*/
+		if(newY - oldY != 2 || ((newX - oldX) != 2 &amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >(newX-oldX) != -2)</span>){
+			bool = false;
+		}
+		//Check that the new location does not already have a piece there
+		else <span class="missing-if-branch" title="if path not taken" >I</span>if(board[newX][newY] != ""){
+<span class="cstat-no" title="statement not covered" >			bool = false;</span>
+		}
+&nbsp;
+		//Check that there is a piece in between the jump so that the jump is valid
+		//user jumped to the right
+		else <span class="missing-if-branch" title="else path not taken" >E</span>if(newX &gt; oldX){
+			/* istanbul ignore if */
+			<span class="skip-if-branch" title="if path not taken" >I</span>if(board[oldX+1][oldY+1] == "" || board[oldX+1][oldY+1].indexOf(pieceType[0]) != -1){
+<span class="cstat-skip" title="statement not covered" >				bool = false;</span>
+			} else {
+				//destroy the piece
+				board[oldX+1][oldY+1] = "";
+				jumpOccurred = true;
+			}
+			//the user jumped to the left
+		} else <span class="cstat-no" title="statement not covered" >if(newX &lt; oldX){</span>
+			/* istanbul ignore if */
+<span class="cstat-no" title="statement not covered" >			if(board[oldX-1][oldY+1] == "" || board[oldX-1][oldY+1].indexOf(pieceType[0]) != -1){</span>
+<span class="cstat-skip" title="statement not covered" >				bool = false;</span>
+			} else {
+				//destroy the piece
+<span class="cstat-no" title="statement not covered" >				board[oldX-1][oldY+1] = "";</span>
+<span class="cstat-no" title="statement not covered" >				jumpOccurred = true;</span>
+			}
+&nbsp;
+		}
+&nbsp;
+&nbsp;
+		return bool;
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function negativeJump(piece, oldX, oldY, newX, newY){</span>
+<span class="cstat-no" title="statement not covered" >		var bool = true;</span>
+<span class="cstat-no" title="statement not covered" >		var pieceType = piece.split("");</span>
+		/*Check that the user moved the piece 2 rows down and 2 columns away 
+		  from the orginal position
+		*/
+<span class="cstat-no" title="statement not covered" >		if(oldY - newY != 2 || ((newX - oldX) != 2 &amp;&amp; (newX-oldX) != -2)){</span>
+<span class="cstat-no" title="statement not covered" >			bool = false;</span>
+		}
+		//Check that the new location does not already have a piece there
+		else <span class="cstat-no" title="statement not covered" >if(board[newX][newY] != ""){</span>
+<span class="cstat-no" title="statement not covered" >			bool = false;</span>
+		}
+&nbsp;
+		//Check that there is a piece in between the jump so that the jump is valid
+		//user jumped to the right
+		else <span class="cstat-no" title="statement not covered" >if(newX &gt; oldX){</span>
+			/* istanbul ignore if */
+<span class="cstat-no" title="statement not covered" >			if(board[oldX+1][oldY-1] == "" || board[oldX+1][oldY-1].indexOf(pieceType[0]) != -1){</span>
+<span class="cstat-skip" title="statement not covered" >				bool = false;</span>
+			} else {
+				//destroy the piece
+<span class="cstat-no" title="statement not covered" >				board[oldX+1][oldY-1] = "";</span>
+<span class="cstat-no" title="statement not covered" >				jumpOccurred = true;</span>
+			}
+			//the user jumped to the left
+		} else <span class="cstat-no" title="statement not covered" >if(newX &lt; oldX){</span>
+			/* istanbul ignore if */
+<span class="cstat-no" title="statement not covered" >			if(board[oldX-1][oldY-1] == "" || board[oldX-1][oldY-1].indexOf(pieceType[0]) != -1){</span>
+<span class="cstat-skip" title="statement not covered" >				bool = false;</span>
+			} else {
+				//destroy the piece
+<span class="cstat-no" title="statement not covered" >				board[oldX-1][oldY-1] = "";</span>
+<span class="cstat-no" title="statement not covered" >				jumpOccurred = true;</span>
+			}
+&nbsp;
+		}
+<span class="cstat-no" title="statement not covered" >		return bool;</span>
+	}
+&nbsp;
+	function kingMe(piece, newX, newY){
+		if(piece == 'wP'){
+			if(newY == 7){
+				board[newX][newY] = 'wK';
+			}
+		} else if(piece == 'bP'){
+			<span class="missing-if-branch" title="else path not taken" >E</span>if(newY == 0){
+				board[newX][newY] = 'bK';
+			}
+		}
+	}
+&nbsp;
+	//return true if there is a jump available and the selected piece is not a jumpable piece
+	function checkForJumps(color, boardLocation){
+		//used for getting first character of the color for comparison of piece objects
+		var colorSplit = color.split("");
+		//used for getting board locations to integer values
+		var location = boardLocation.split("");
+		//coords of the dragstart piece
+		var x = location[0].charCodeAt(0) - 97;
+		var y = parseInt(location[1]) - 1;
+		var bool = false;
+		var futureRowPositive;
+		var futureRowNegative;
+		var futureColPositive;
+		var futureColNegative;
+&nbsp;
+		//reset the value of flag for jumpoccurring
+		jumpOccurred = false;
+&nbsp;
+		for(var row = 0; row &lt; board.length; row++){
+			for(var col = 0; col &lt; board[row].length; col++){
+				//Get piece of the same color
+				<span class="missing-if-branch" title="if path not taken" >I</span>if(board[row][col].indexOf(colorSplit[0]) != -1){
+<span class="cstat-no" title="statement not covered" >					futureRowPositive = row+2;</span>
+<span class="cstat-no" title="statement not covered" >					futureRowNegative = row-2;</span>
+<span class="cstat-no" title="statement not covered" >					futureColPositive = col+2;</span>
+<span class="cstat-no" title="statement not covered" >					futureColNegative = col-2;</span>
+					//FORWARD MOVE
+					//Make sure rows do not go out array dimensions
+<span class="cstat-no" title="statement not covered" >					if(futureColPositive &lt; board[row].length &amp;&amp; board[row][col] != "bP"){</span>
+						//Make sure cols do not go out of array dimensions
+<span class="cstat-no" title="statement not covered" >						if(futureRowPositive &lt; board[row].length){</span>
+							//check that there is ample jumping space, forward moves strictly enforce black mans to go forward
+<span class="cstat-no" title="statement not covered" >							if(board[futureRowPositive][futureColPositive] == ""){</span>
+								//check that there is a piece in the spot and that it is the opponents
+<span class="cstat-no" title="statement not covered" >								if(board[futureRowPositive-1][futureColPositive-1].indexOf(colorSplit[0]) == -1 &amp;&amp; board[futureRowPositive-1][futureColPositive-1] != ""){</span>
+									//There is a jump available and the clicked piece is not the piece that can jump
+<span class="cstat-no" title="statement not covered" >									if(x == row &amp;&amp; y == col){</span>
+<span class="cstat-no" title="statement not covered" >										bool = false;</span>
+<span class="cstat-no" title="statement not covered" >										addToAvailableJumps(futureRowPositive, futureColPositive, boardLocation);</span>
+<span class="cstat-no" title="statement not covered" >										return bool;</span>
+									} else {
+										
+<span class="cstat-no" title="statement not covered" >										bool = true;</span>
+									}
+									
+								} 
+							} //Make sure cols and rows do not go out of array dimensions negatively 
+						}
+<span class="cstat-no" title="statement not covered" >						if(futureRowNegative &gt;= 0){</span>
+							//check to make sure there is ample jumping space
+<span class="cstat-no" title="statement not covered" >							if(board[futureRowNegative][futureColPositive] == ""){</span>
+								//check that there is a piece between of opposite color
+<span class="cstat-no" title="statement not covered" >								if(board[futureRowNegative+1][futureColPositive-1].indexOf(colorSplit[0]) == -1 &amp;&amp; board[futureRowNegative+1][futureColPositive-1] != ""){</span>
+									//There is a jump available and the clicked piece is not the piece that can jump
+<span class="cstat-no" title="statement not covered" >									if(x == row &amp;&amp; y == col){</span>
+<span class="cstat-no" title="statement not covered" >										bool = false;</span>
+<span class="cstat-no" title="statement not covered" >										addToAvailableJumps(futureRowNegative, futureColPositive, boardLocation);</span>
+<span class="cstat-no" title="statement not covered" >										return bool;</span>
+									} else {
+<span class="cstat-no" title="statement not covered" >										bool = true;</span>
+									}
+								}
+							}
+						}
+&nbsp;
+					}
+					//BACKWARD MOVE
+					//Make sure rows do not go out array dimensions
+<span class="cstat-no" title="statement not covered" >					if(futureColNegative &gt;= 0 &amp;&amp; board[row][col] != "wP"){</span>
+						//Make sure cols do not go out of array dimensions
+<span class="cstat-no" title="statement not covered" >						if(futureRowNegative &gt;= 0){</span>
+							//check that there is ample jumping space, backward moves strictly enforce white mans to go backward
+<span class="cstat-no" title="statement not covered" >							if(board[futureRowNegative][futureColNegative] == ""){</span>
+								//check that there is a piece in the spot and that it is the opponents
+<span class="cstat-no" title="statement not covered" >								if(board[futureRowNegative+1][futureColNegative+1].indexOf(colorSplit[0]) == -1 &amp;&amp; board[futureRowNegative+1][futureColNegative+1] != ""){</span>
+									//There is a jump available and the clicked piece is not the piece that can jump
+<span class="cstat-no" title="statement not covered" >									if(x == row &amp;&amp; y == col){</span>
+<span class="cstat-no" title="statement not covered" >										bool = false;</span>
+<span class="cstat-no" title="statement not covered" >										addToAvailableJumps(futureRowNegative, futureColNegative, boardLocation);</span>
+<span class="cstat-no" title="statement not covered" >										return bool;</span>
+									} else {
+										
+<span class="cstat-no" title="statement not covered" >										bool = true;</span>
+									}
+									
+								} 
+							} //Make sure cols do not go out of array dimensions negatively 
+						}
+<span class="cstat-no" title="statement not covered" >						if(futureRowPositive &lt; board.length){</span>
+							//check to make sure there is ample jumping space
+<span class="cstat-no" title="statement not covered" >							if(board[futureRowPositive][futureColNegative] == ""){</span>
+								//check that there is a piece between of opposite color
+<span class="cstat-no" title="statement not covered" >								if(board[futureRowPositive-1][futureColNegative+1].indexOf(colorSplit[0]) == -1 &amp;&amp; board[futureRowPositive-1][futureColNegative+1] != ""){</span>
+									//There is a jump available and the clicked piece is not the piece that can jump
+<span class="cstat-no" title="statement not covered" >									if(x == row &amp;&amp; y == col){</span>
+<span class="cstat-no" title="statement not covered" >										bool = false;</span>
+<span class="cstat-no" title="statement not covered" >										addToAvailableJumps(futureRowPositive, futureColNegative, boardLocation);</span>
+<span class="cstat-no" title="statement not covered" >										return bool;</span>
+									} else {
+										
+<span class="cstat-no" title="statement not covered" >										bool = true;</span>
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return bool;
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function addToAvailableJumps(firstDigit, secondDigit, boardLocation){</span>
+<span class="cstat-no" title="statement not covered" >		var chr = String.fromCharCode(97 + firstDigit);</span>
+<span class="cstat-no" title="statement not covered" >        var boardPosition = chr.concat(secondDigit+1);</span>
+<span class="cstat-no" title="statement not covered" >		if(boardLocation in availableJumps){</span>
+<span class="cstat-no" title="statement not covered" >			availableJumps[boardLocation].push(boardPosition);</span>
+		} else {
+<span class="cstat-no" title="statement not covered" >			availableJumps[boardLocation] = [boardPosition];</span>
+		}
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function forceJump(startPos, endPos){</span>
+<span class="cstat-no" title="statement not covered" >		if(Object.keys(availableJumps).length === 0)</span>
+<span class="cstat-no" title="statement not covered" >			return true;</span>
+<span class="cstat-no" title="statement not covered" >		if(startPos in availableJumps){</span>
+<span class="cstat-no" title="statement not covered" >			for(var i=0; i&lt;availableJumps[startPos].length; i++){</span>
+<span class="cstat-no" title="statement not covered" >				if(availableJumps[startPos][i] == endPos){</span>
+					//clear out the map for til the next time
+<span class="cstat-no" title="statement not covered" >					availableJumps = {};</span>
+<span class="cstat-no" title="statement not covered" >					return true;</span>
+				}
+			}
+		}
+<span class="cstat-no" title="statement not covered" >		return false;</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	function checkDoubleJump(piece, position){</span>
+<span class="cstat-no" title="statement not covered" >		checkForJumps(piece, position);</span>
+<span class="cstat-no" title="statement not covered" >		if(Object.keys(availableJumps).length === 0){</span>
+<span class="cstat-no" title="statement not covered" >			return false;</span>
+		}
+<span class="cstat-no" title="statement not covered" >		return true;</span>
+	}
+&nbsp;
+	function getJumpOccurred(){
+		return jumpOccurred;
+	}
+&nbsp;
+	function checkWinLose(playerColor) {
+		var result = 'none';
+		if (playerColor == 'wP' || playerColor == 'wK') {
+			var containsBlack = boardContains(board, 'black');
+			if (containsBlack == false) {
+				result = 'win';
+			}
+		}
+		else <span class="missing-if-branch" title="else path not taken" >E</span>if (playerColor == 'bP' || playerColor == 'bK') {
+			var containsWhite = boardContains(board, 'white');
+			<span class="missing-if-branch" title="else path not taken" >E</span>if (containsWhite == false) {
+				result = 'win';
+			}
+		}
+&nbsp;
+		return result;
+	}
+&nbsp;
+	function boardContains(board, value) {
+		var piece;
+		var king;
+		if (value == 'black') {
+			piece = 'bP';
+			king = 'bK';
+		}
+		else <span class="missing-if-branch" title="else path not taken" >E</span>if (value == 'white') {
+			piece = 'wP';
+			king = 'wK';
+		}
+		
+		for (var i = 0; i &lt; board.length; i++) {
+			for (var k = 0; k &lt; board[i].length; k++) {
+				if (board[i][k] == piece || board[i][k] == king) {
+					return true;
+				}
+			}
+		}
+	
+		return false;
+	}
+&nbsp;
+	return{
+		populateBoard:populateBoard,
+		getVirtualBoard:getVirtualBoard,
+		validMove:validMove,
+		setVirtualBoard: setVirtualBoard,
+		checkForJumps:checkForJumps,
+		checkWinLose: checkWinLose,
+		forceJump: forceJump,
+		checkDoubleJump: checkDoubleJump,
+		getJumpOccurred: getJumpOccurred
+	}
+});</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 18 2016 12:50:48 GMT-0400 (EDT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

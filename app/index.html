@@ -1,0 +1,86 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!doctype html >
+<html lang="en" ng-app="checkers">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <title>Checkers</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/scripts/angular.js"></script>
+    <script type="text/javascript" src="/scripts/angular-animate.js"></script>
+    <script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Checkers.js"></script>
+    <script type="text/javascript" src="/scripts/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="/scripts/ui-bootstrap-tpls.js"></script>
+    <script type="text/javascript" src="playModalController.js"></script>
+    <script type="text/javascript" src="forfeitModalController.js"></script>
+    <script type="text/javascript" src="winLoseModalController.js"></script>
+    <script type="text/javascript" src="/scripts/angular-route.js"></script>
+    <script type="text/javascript" src="/board/chessboard-0.3.0.js"></script>
+    <script type="text/javascript" src="CheckerBoardCtrl.js"></script>
+    <script type="text/javascript" src="CheckerBoardService.js"></script>
+    <script type="text/javascript" src="SocketService.js"></script>
+    <script type="text/javascript" src="scripts/socket.io.js"></script>
+    <script type="text/javascript" src="scripts/validator.js"></script>
+    <script type="text/javascript" src="scripts/particles.js"></script>
+    <link href="/scripts/ui-bootstrap-csp.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/chessboard-0.3.0.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/styles.css"/>
+    <link href='/styles/bootstrap.css' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body ng-controller="CheckersController">
+<div>
+    <!--             <div>
+            <nav class="navbar navbar-inverse" role="navigation">
+                <a class="navbar-brand bangers" href="#">Checkers: The Game</a>
+            </nav>
+        </div> -->
+
+    <div id="particles-js" class="hero-unit angled stripes">
+        <div class="col-md-2 col-md-offset-5">
+            <h1 class="navbar-brand " style="text-align: center; font-family: 'Lobster', cursive;">Checkers<br/><span
+                    class="glyphicon glyphicon-king" aria-hidden="true"></span></h1>
+        </div>
+    </div>
+    <br/>
+    <ng-view></ng-view>
+</div>
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Rules</h4>
+            </div>
+            <div class="modal-body">
+                Checkers is played by two players. Each player begins the game with 12 colored discs. (Typically, one
+                set of pieces is black and the other red.) The board consists of 64 squares, alternating between 32 dark
+                and 32 light squares. It is positioned so that each player has a light square on the right side corner
+                closest to him or her. Each player places his or her pieces on the 12 dark squares closest to him or
+                her. Black moves first. Players then alternate moves. Moves are allowed only on the dark squares, so
+                pieces always move diagonally. Single pieces are always limited to forward moves (toward the opponent).
+                A piece making a non-capturing move (not involving a jump) may move only one square. A piece making a
+                capturing move (a jump) leaps over one of the opponent's pieces, landing in a straight diagonal line on
+                the other side. Only one piece may be captured in a single jump; however, multiple jumps are allowed on
+                a single turn.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+
+</html>
